@@ -4,17 +4,17 @@ const SEARCHAPI="https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee
 const movieBox=document.querySelector("#movie-box")
 const search=document.querySelector("#search")
 const getMovies=async (api)=>{
-    const response= await fetch(api)
-    const data=await response.json()
+    const response= await fetch(api);
+    const data=await response.json();
     console.log(data);
-    showMovies(data.results)
+    showMovies(data.results);
 }
 
 const showMovies=(data)=>{
     movieBox.innerHTML=""
     data.forEach((item) => {
-        const box=document.createElement("div")
-        box.classList.add("box")
+        const box=document.createElement("div");
+        box.classList.add("box");
         box.innerHTML=`
             <img src="${IMPATH+item.poster_path}" alt="">
                 <div class="overlay">
@@ -27,19 +27,19 @@ const showMovies=(data)=>{
                     <p>${item.overview}</p>
                 </div>
         `
-        movieBox.appendChild(box)
+        movieBox.appendChild(box);
     });
 }
 search.addEventListener(
     "keyup",
     function(e){
         if(e.target.value !=""){
-            getMovies(SEARCHAPI+e.target.value)
+            getMovies(SEARCHAPI+e.target.value);
         }
         else{
-            getMovies(APIURL)
+            getMovies(APIURL);
         }
         
     }
 )
-getMovies(APIURL)
+getMovies(APIURL);
